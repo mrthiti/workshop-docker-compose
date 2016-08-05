@@ -1,0 +1,20 @@
+version: "2"
+services:
+  lb:
+    build: ./build/lb
+    container_name: lb
+    volumes:
+      - ./src/lb:/usr/share/nginx/html
+    links:
+      - nodejs1
+      - nodejs2
+    ports:
+      - 3000:80
+
+  nodejs1:
+    build: ./build/nodejs1
+    container_name: nodejs1
+
+  nodejs2:
+    build: ./build/nodejs2
+    container_name: nodejs2
